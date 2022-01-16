@@ -1,0 +1,7 @@
+{
+  "name": "Sefers-Collection",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
