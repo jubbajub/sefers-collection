@@ -1,11 +1,14 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Zahlenraten</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-Die zu erratende Zufallszahl ist: {{zufallszahl}}
+<!-- <ion-content>
+Die zu erratende Zufallszahl (von {{zufallszahlVon}} bis {{zufallszahlBis}}) ist: {{zufallszahl}}
 </ion-content> 
 <ion-content>
   <ion-input type="number" [(ngModel)]="deineZahl" placeholder="Gib hier deine Zahl ein"></ion-input>
@@ -19,3 +22,42 @@ Die zu erratende Zufallszahl ist: {{zufallszahl}}
 <ion-content>
   ERGEBNIS: {{ergebnis}}
 </ion-content>
+
+<button (click)="neuesSpiel()">Neues Spiel (Reload)</button> -->
+<div class="beispielCssKlasse">
+<ion-item-group>
+  <ion-item-divider>
+    <ion-label>EINGABE</ion-label>
+  </ion-item-divider>
+
+  <ion-item>
+    <ion-label>Die zu erratende Zufallszahl (von {{zufallszahlVon}} bis {{zufallszahlBis}}) ist: {{zufallszahl}}</ion-label>
+  </ion-item>
+  <ion-item>
+    Deine Zahl: <ion-input type="number" [(ngModel)]="deineZahl" placeholder="...deine Zahl"></ion-input>
+</ion-item>  
+<ion-item>
+      <ion-button (click)="startTry($event)" expand="block" color="danger">START Versuch
+    
+      </ion-button>
+
+  </ion-item>
+
+</ion-item-group>
+
+<ion-item-group>
+  <ion-item-divider>
+    <ion-label>AUSGABE</ion-label>
+  </ion-item-divider>
+
+  <ion-item>
+    <ion-label>  Dies ist dein {{anzahlVersuche}}. Versuch</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>  ERGEBNIS: {{ergebnis}}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-button (click)="neuesSpiel()" color="success">Neues Spiel (Reload)</ion-button>
+  </ion-item>
+</ion-item-group>
+</div>

@@ -6,7 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./zahlenraten.page.scss'],
 })
 export class ZahlenratenPage {
-  zufallszahl= 10;
+  //var x = Math.round(Math.random() * (max - min)) + min;
+  zufallszahlVon = 1;
+  zufallszahlBis = 10;
+  zufallszahl = Math.round(Math.random() * (this.zufallszahlBis - this.zufallszahlVon)) + this.zufallszahlVon;
+  //zufallszahl= 10;
+
   deineZahl: number;
   anzahlVersuche=0;
   ergebnis: string;
@@ -14,28 +19,31 @@ export class ZahlenratenPage {
   //deineZahlen: array;
 
   constructor() {
-    
    }
 
-   startTry(event:Event){
+   neuesSpiel(): void {
+    window.location.reload();
+  }
+
+  startTry(event: Event){
   this.anzahlVersuche=this.anzahlVersuche+1;
-  if (this.deineZahl==this.zufallszahl)
+  if (this.deineZahl===this.zufallszahl)
   {
-    this.ergebnis="VOLTREFFER!"
+    this.ergebnis='VOLTREFFER!';
     //alert(this.ergebnis);
   }
   else if(this.deineZahl>this.zufallszahl){
-    this.ergebnis="Deine Zahl ist zu GROß!"
+    this.ergebnis='Deine Zahl ist zu GROß!';
     //alert(this.ergebnis);
   }
   else if(this.deineZahl<this.zufallszahl)
   {
-    this.ergebnis="Deine Zahl ist zu KLEIN!"
+    this.ergebnis='Deine Zahl ist zu KLEIN!';
     //alert(this.ergebnis);
   }
   //alert(this.deineZahl);
   //this.deineZahl=100;
   //console.log(event);
 
-}
+  }
 }
