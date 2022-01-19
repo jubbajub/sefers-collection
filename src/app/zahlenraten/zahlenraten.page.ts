@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './zahlenraten.page.html',
   styleUrls: ['./zahlenraten.page.scss'],
 })
+
+
 export class ZahlenratenPage {
   //var x = Math.round(Math.random() * (max - min)) + min;
   zufallszahlVon = 1;
@@ -16,7 +18,7 @@ export class ZahlenratenPage {
   anzahlVersuche=0;
   ergebnis: string;
 
-  tblHeaders = ['Anzahl Versuche', 'Dein Tip'];
+  tblHeaders = ['Anzahl Versuche', 'Dein Tip', 'Ergebnis'];
   arrDeineZahlen: any[]=[];
 
   constructor() {
@@ -30,29 +32,42 @@ export class ZahlenratenPage {
   startTry(event: Event){
     //event wird für Zahlenraten nicht benutzt, aber hier werden sehr viele informationen mit übergeben
 
-    this.anzahlVersuche=this.anzahlVersuche+1;
-    //das Array arrDeineZahlen erhält einen neuen WErt
-    this.arrDeineZahlen.push({anzahlVersuche: this.anzahlVersuche, deinTip: this.deineZahl});
-    console.log(this.arrDeineZahlen);
+   //TODO -->Doppelte Zahlen sollte man nicht eingeben können! 
+  //  const deineZahlDoppelt = this.arrDeineZahlen.find({deinTip} => deinTip === this.deineZahl);
+  //  console.log(deineZahlDoppelt);
+  //  if (deineZahlDoppelt){ 
+  //   alert('Diese Zahl hast du schonmal eingegeben!');
+  //   return null;
+  // }
 
+    if (!this.deineZahl){ 
+    alert('Du musst eine Zahl eingeben, sonst passiert nichts');
+    return null;
+  }
+
+    this.anzahlVersuche=this.anzahlVersuche+1;
 
   if (this.deineZahl===this.zufallszahl)
   {
-    this.ergebnis='Du hast mit '+this.anzahlVersuche+' versuchen Gewonnen!';
+    this.ergebnis='Mit '+this.anzahlVersuche+' versuchen Gewonnen!';
     alert(this.ergebnis);
   }
   else if(this.deineZahl>this.zufallszahl){
-    this.ergebnis='Deine Zahl ist zu GROß!';
+    this.ergebnis='zu GROß!';
     //alert(this.ergebnis);
   }
   else if(this.deineZahl<this.zufallszahl)
   {
-    this.ergebnis='Deine Zahl ist zu KLEIN!';
+    this.ergebnis='zu KLEIN!';
     //alert(this.ergebnis);
   }
+      //das Array arrDeineZahlen erhält einen neuen WErt
+      this.arrDeineZahlen.push({anzahlVersuche: this.anzahlVersuche, deinTip: this.deineZahl, deinErgebnis: this.ergebnis});
+      console.log(this.arrDeineZahlen);
+
   //alert(this.deineZahl);
   //this.deineZahl=100;
-  console.log(event);
+  //console.log(event);
 
   }
 }

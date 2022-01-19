@@ -17,7 +17,7 @@
     <ion-label>Die Zufallszahl liegt zwischen {{zufallszahlVon}} und {{zufallszahlBis}}!</ion-label>
   </ion-item>
   <ion-item>
-    Deine Zahl: <ion-input type="number" [(ngModel)]="deineZahl" placeholder="...deine Zahl"></ion-input>
+    Deine Zahl: <ion-input type="number" [(ngModel)]="deineZahl" placeholder="  ..deine Zahl"></ion-input>
 </ion-item>  
 <ion-item>
       <ion-button (click)="startTry($event)" expand="block" color="success">START Versuch</ion-button>
@@ -58,10 +58,13 @@
 <tbody>
   <tr *ngFor = "let row of arrDeineZahlen ; index as i; ; first as isFirst">
     <td >
-      {{row.anzahlVersuche}}
+      {{row.anzahlVersuche}}.
     </td>
     <td >
       {{row.deinTip}}
+    </td>
+    <td >
+      {{row.deinErgebnis}}
     </td>
   </tr>
 </tbody>
