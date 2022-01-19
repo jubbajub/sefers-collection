@@ -15,22 +15,31 @@ export class ZahlenratenPage {
   deineZahl: number;
   anzahlVersuche=0;
   ergebnis: string;
-  //TODO
-  //deineZahlen: array;
+
+  tblHeaders = ['Anzahl Versuche', 'Dein Tip'];
+  arrDeineZahlen: any[]=[];
 
   constructor() {
    }
 
    neuesSpiel(): void {
+    //macht das selbe wie F5
     window.location.reload();
   }
 
   startTry(event: Event){
-  this.anzahlVersuche=this.anzahlVersuche+1;
+    //event wird für Zahlenraten nicht benutzt, aber hier werden sehr viele informationen mit übergeben
+
+    this.anzahlVersuche=this.anzahlVersuche+1;
+    //das Array arrDeineZahlen erhält einen neuen WErt
+    this.arrDeineZahlen.push({anzahlVersuche: this.anzahlVersuche, deinTip: this.deineZahl});
+    console.log(this.arrDeineZahlen);
+
+
   if (this.deineZahl===this.zufallszahl)
   {
-    this.ergebnis='VOLTREFFER!';
-    //alert(this.ergebnis);
+    this.ergebnis='Du hast mit '+this.anzahlVersuche+' versuchen Gewonnen!';
+    alert(this.ergebnis);
   }
   else if(this.deineZahl>this.zufallszahl){
     this.ergebnis='Deine Zahl ist zu GROß!';
@@ -43,7 +52,7 @@ export class ZahlenratenPage {
   }
   //alert(this.deineZahl);
   //this.deineZahl=100;
-  //console.log(event);
+  console.log(event);
 
   }
 }
