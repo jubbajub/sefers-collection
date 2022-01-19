@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Zahlenraten</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+Die zu erratende Zufallszahl ist: {{zufallszahl}}
+</ion-content> 
+<ion-content>
+  <ion-input type="number" [(ngModel)]="deineZahl" placeholder="Gib hier deine Zahl ein"></ion-input>
+  <ion-button (click)="startTry($event)">START Versuch
+
+  </ion-button>
+</ion-content>
+<ion-content>
+  Dies ist dein {{anzahlVersuche}}. Versuch
+</ion-content>
+<ion-content>
+  ERGEBNIS: {{ergebnis}}
+</ion-content>
