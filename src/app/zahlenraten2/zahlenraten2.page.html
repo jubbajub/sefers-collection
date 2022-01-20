@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Zahlenraten 2 (ULTRA)</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen>
+
+
+  <section [hidden]="zufallszahl">
+    <header>Schwierigkeit auswählen:</header>
+    <ion-button class="btnClass" (click)="zufallszahlErmitteln(1,10)" color="success" size="large">leicht <br>(1-10)</ion-button>
+    <ion-button class="btnClass" (click)="zufallszahlErmitteln(1,50)"color="warning" size="large">Mittel <br>(1-50)</ion-button>
+    <ion-button class="btnClass" (click)="zufallszahlErmitteln(1,1000000)"color="danger" size="large">Ultra <br>schaffst Du nicht :)<br>(1-1.000.000)</ion-button>
+  </section>
+
+  <section  [hidden]="!zufallszahl">
+<ion-input type="number" [(ngModel)]="deineZahl" placeholder="Deine Zahl hier eingeben"></ion-input>
+<ion-item>
+  <ion-button (click)="startTry($event)" expand="block" color="success">START Versuch</ion-button>
+</ion-item>
+ </section>
+ 
+ <section [hidden]="!zufallszahl">
+ <table id="users">
+  <thead>
+  <tr>
+    <th *ngFor = "let column of tblHeaders">
+      {{column}}
+    </th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr *ngFor = "let row of arrDeineZahlen ; index as i; ; first as isFirst">
+    <td >
+      {{row.anzahlVersuche}}.
+    </td>
+    <td >
+      {{row.deinTip}}
+    </td>
+    <td >
+      {{row.deinErgebnis}}
+    </td>
+  </tr>
+</tbody>
+</table>
+</section>
+
+
+</ion-content>
+
+
+<ion-button [hidden]="!zufallszahl" (click)="neuesSpiel()"  color="warning">Neues Spiel?</ion-button>
+

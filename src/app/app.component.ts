@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
+    { title: 'Zahlenraten 2 (ULTRA)', url: '/zahlenraten2', icon: 'calculator' },
     { title: 'Zahlenraten', url: '/zahlenraten', icon: 'calculator' },
     { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
     { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },

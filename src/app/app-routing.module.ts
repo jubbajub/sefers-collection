@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'zahlenraten',
     loadChildren: () => import('./zahlenraten/zahlenraten.module').then( m => m.ZahlenratenPageModule)
+  },
+  {
+    path: 'zahlenraten2',
+    loadChildren: () => import('./zahlenraten2/zahlenraten2.module').then( m => m.Zahlenraten2PageModule)
   }
 ];
 
