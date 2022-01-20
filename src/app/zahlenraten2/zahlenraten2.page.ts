@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Zahlenraten2Page implements OnInit {
 
-zufallszahl: number;
+  gewonnen= false;
+  zufallszahl: number;
 deineZahl: number;
 anzahlVersuche=0;
 ergebnis: string;
@@ -27,7 +28,7 @@ arrDeineZahlen: any[]=[];
 
 this.zufallszahl = Math.round(Math.random() * (valueTo - valueFrom)) + valueFrom;
 //zufallszahl= 10;
-    alert('von '+valueFrom+' bis '+valueTo+'! Die Zufallszahl ist: '+this.zufallszahl);
+    //alert('von '+valueFrom+' bis '+valueTo+'! Die Zufallszahl ist: '+this.zufallszahl);
     return this.zufallszahl;
   }
   
@@ -53,6 +54,7 @@ this.zufallszahl = Math.round(Math.random() * (valueTo - valueFrom)) + valueFrom
   if (this.deineZahl===this.zufallszahl)
   {
     this.ergebnis='Mit '+this.anzahlVersuche+' versuchen Gewonnen!';
+    this.gewonnen=true;
     //alert(this.ergebnis);
   }
   else if(this.deineZahl>this.zufallszahl){

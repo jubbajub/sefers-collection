@@ -18,10 +18,10 @@
     <ion-button class="btnClass" (click)="zufallszahlErmitteln(1,1000000)"color="danger" size="large">Ultra <br>schaffst Du nicht :)<br>(1-1.000.000)</ion-button>
   </section>
 
-  <section  [hidden]="!zufallszahl">
+  <section  [hidden]="!zufallszahl" >
 <ion-input type="number" [(ngModel)]="deineZahl" placeholder="Deine Zahl hier eingeben"></ion-input>
 <ion-item>
-  <ion-button (click)="startTry($event)" expand="block" color="success">START Versuch</ion-button>
+  <ion-button [hidden]="gewonnen" (click)="startTry($event)" expand="block" color="success">START Versuch</ion-button>
 </ion-item>
  </section>
  
@@ -51,6 +51,7 @@
 </table>
 </section>
 
+<h1 style="color: red;"[hidden]="!gewonnen" >Du bist Ultraguuut!</h1>
 
 </ion-content>
 
