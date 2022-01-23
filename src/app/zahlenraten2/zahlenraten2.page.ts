@@ -42,8 +42,8 @@ arrDeineZahlen: any[]=[];
 
     this.valueFrom=valueFrom;
     this.valueTo=valueTo;
-    this.spielBeginnZeit=Date.now();
-    console.log('Spielbeginnzeit: '+this.spielBeginnZeit);
+    
+    //console.log('Spielbeginnzeit: '+this.spielBeginnZeit);
     //var x = Math.round(Math.random() * (max - min)) + min;
 
     this.zufallszahl = Math.round(Math.random() * (valueTo - valueFrom)) + valueFrom;
@@ -95,7 +95,7 @@ arrDeineZahlen: any[]=[];
           });
           console.log(this.arrDeineZahlen);
           const i=this.arrDeineZahlen.length-1;
-
+  this.spielBeginnZeit=this.arrDeineZahlen[0].zeitStempel;
   this.spielEndeZeit=this.arrDeineZahlen[i].zeitStempel;
   this.spieldauer=this.spielEndeZeit-this.spielBeginnZeit;
 
