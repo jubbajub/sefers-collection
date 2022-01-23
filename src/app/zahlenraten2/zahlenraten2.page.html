@@ -12,20 +12,24 @@
 
 
   <section [hidden]="zufallszahl">
-    <header>Schwierigkeit auswählen:</header>
+    <header>Name eingeben und Schwierigkeit auswählen!</header>
+    <ion-input type="text" [(ngModel)]="deinName" placeholder="Wie heißt du?"></ion-input>
     <ion-button class="btnClass" (click)="zufallszahlErmitteln(1,10)" color="success" size="large">leicht <br>(1-10)</ion-button>
     <ion-button class="btnClass" (click)="zufallszahlErmitteln(1,50)"color="warning" size="large">Mittel <br>(1-50)</ion-button>
-    <ion-button class="btnClass" (click)="zufallszahlErmitteln(1,1000000)"color="danger" size="large">Ultra <br>schaffst Du nicht :)<br>(1-1.000.000)</ion-button>
+    <ion-button class="btnClass" (click)="zufallszahlErmitteln(1,1000000)"color="danger" size="large">Ultra <br>Das schaffst Du nicht ;)<br>(1-1.000.000)</ion-button>
   </section>
 
   <section  [hidden]="!zufallszahl" >
+    <ion-item>Hallo {{deinName}}, die gesuchte Zahl ist zwischen {{valueFrom}} und {{valueTo | number}}!</ion-item>
 <ion-input type="number" [(ngModel)]="deineZahl" placeholder="Deine Zahl hier eingeben"></ion-input>
-<ion-item>
-  <ion-button [hidden]="gewonnen" (click)="startTry($event)" expand="block" color="success">START Versuch</ion-button>
-</ion-item>
+
+  <ion-button [hidden]="gewonnen" (click)="startTry($event)" expand="block" color="success">Tip abgeben!</ion-button>
+
  </section>
- 
- <section [hidden]="!zufallszahl">
+ <section [hidden]="!ergebnis">
+  <h1 text-align="center"> {{ergebnis}} !</h1>
+ </section>
+ <section [hidden]="!ergebnis">
  <table id="users">
   <thead>
   <tr>
@@ -36,7 +40,8 @@
 </thead>
 
 <tbody>
-  <tr *ngFor = "let row of arrDeineZahlen ; index as i; ; first as isFirst">
+  <!-- slice: -10  zeigt nur die letzen 5 Elemente an -->
+  <tr *ngFor = "let row of (arrDeineZahlen| slice: -3) ; index as i;">
     <td >
       {{row.anzahlVersuche}}.
     </td>
@@ -46,15 +51,25 @@
     <td >
       {{row.deinErgebnis}}
     </td>
+    <td >
+      {{row.zeitStempel | date :'HH:mm:ss'}} 
+    </td>
   </tr>
 </tbody>
+
 </table>
 </section>
-
-<h1 style="color: red;"[hidden]="!gewonnen" >Du bist Ultraguuut!</h1>
+<section>
+  
+  <h3 style="color: red;"[hidden]="!gewonnen" >Du bist Ultraguuut!</h3>
+  <h3 style="color: red;" [hidden]="!gewonnen" >Spielbeginn um: {{spielBeginnZeit | date :'HH:mm:ss' }}</h3>
+  <h3 style="color: red;" [hidden]="!gewonnen" >SpielEnde um: {{spielEndeZeit | date :'HH:mm:ss' }}</h3>
+  <h3 style="color: red;"[hidden]="!gewonnen" >Du hast gebraucht:<br> {{spieldauer | number: '1.0-0'}} Sekunden</h3>
+  
+</section>
 
 </ion-content>
 
 
-<ion-button [hidden]="!zufallszahl" (click)="neuesSpiel()"  color="warning">Neues Spiel?</ion-button>
+<ion-button  (click)="neuesSpiel()"  color="warning">Neues Spiel?</ion-button>
 

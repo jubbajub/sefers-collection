@@ -1,4 +1,6 @@
+import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { NumericValueAccessor } from '@ionic/angular';
 
 @Component({
   selector: 'app-zahlenraten2',
@@ -12,8 +14,18 @@ export class Zahlenraten2Page implements OnInit {
 deineZahl: number;
 anzahlVersuche=0;
 ergebnis: string;
+deinName: string;
+valueFrom: number;
+valueTo: number;
 
-tblHeaders = ['Versuche', 'Dein Tip', 'Ergebnis'];
+spielBeginnZeit: number;
+spielEndeZeit: number;
+spieldauer: number;
+
+
+// timestampErgebnis: Date();
+
+tblHeaders = ['Versuche', 'Dein Tip', 'Ergebnis', 'Zeitstempel'];
 arrDeineZahlen: any[]=[];
   constructor() { }
 
@@ -24,12 +36,20 @@ arrDeineZahlen: any[]=[];
     window.location.reload();
   }
   zufallszahlErmitteln(valueFrom: number, valueTo: number){
+    if (!this.deinName){
+      alert('Du musst Deinen Namen eingeben. Wird für Highscore benötigt!');
+    return null;}
+
+    this.valueFrom=valueFrom;
+    this.valueTo=valueTo;
+    this.spielBeginnZeit=Date.now();
+    console.log('Spielbeginnzeit: '+this.spielBeginnZeit);
     //var x = Math.round(Math.random() * (max - min)) + min;
 
-this.zufallszahl = Math.round(Math.random() * (valueTo - valueFrom)) + valueFrom;
-//zufallszahl= 10;
-    //alert('von '+valueFrom+' bis '+valueTo+'! Die Zufallszahl ist: '+this.zufallszahl);
-    return this.zufallszahl;
+    this.zufallszahl = Math.round(Math.random() * (valueTo - valueFrom)) + valueFrom;
+    //zufallszahl= 10;
+        //alert('von '+valueFrom+' bis '+valueTo+'! Die Zufallszahl ist: '+this.zufallszahl);
+        return this.zufallszahl;
   }
   
   startTry(event: Event){
@@ -66,13 +86,22 @@ this.zufallszahl = Math.round(Math.random() * (valueTo - valueFrom)) + valueFrom
     this.ergebnis='zu KLEIN!';
     //alert(this.ergebnis);
   }
-      //das Array arrDeineZahlen erhält einen neuen WErt
-      this.arrDeineZahlen.push({anzahlVersuche: this.anzahlVersuche, deinTip: this.deineZahl, deinErgebnis: this.ergebnis});
-      console.log(this.arrDeineZahlen);
+           //das Array arrDeineZahlen erhält einen neuen WErt
+           this.arrDeineZahlen.push({
+            anzahlVersuche: this.anzahlVersuche,
+           deinTip: this.deineZahl,
+           deinErgebnis: this.ergebnis,
+           zeitStempel: Date.now()
+          });
+          console.log(this.arrDeineZahlen);
+          const i=this.arrDeineZahlen.length-1;
 
-  //alert(this.deineZahl);
+  this.spielEndeZeit=this.arrDeineZahlen[i].zeitStempel;
+  this.spieldauer=this.spielEndeZeit-this.spielBeginnZeit;
+
+  //alert("Spieldauer: "+this.spieldauer);
   //this.deineZahl=100;
-  //console.log(event);
+  //console.log('Console.Log: '+i);
 
   }
 }

@@ -62,7 +62,11 @@ export class ZahlenratenPage {
     //alert(this.ergebnis);
   }
       //das Array arrDeineZahlen erhält einen neuen WErt
-      this.arrDeineZahlen.push({anzahlVersuche: this.anzahlVersuche, deinTip: this.deineZahl, deinErgebnis: this.ergebnis});
+      this.arrDeineZahlen.push({
+        anzahlVersuche: this.anzahlVersuche,
+       deinTip: this.deineZahl,
+       deinErgebnis: this.ergebnis,
+      });
       console.log(this.arrDeineZahlen);
 
   //alert(this.deineZahl);

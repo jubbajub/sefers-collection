@@ -4,3 +4,11 @@
     height: 4em;
   }
   table, th, td { border: thin solid; }
+
+  tr:nth-child(even){
+    background-color: #ffee00;
+}
+
+tr:last-child{
+  background-color: #ff0000;
+}
